@@ -1,6 +1,19 @@
 from random import randint, choice
+from tkinter import *
+
 
 jogo = input("Digite 1 para começar o jogo: ")
+
+janela = Tk()
+janela.title("Truco Diferenciado")
+TextoInicial = Label(janela, text="PLACAR")
+TextoInicial.grid(column=3, row=3)
+label_placar = Label(janela, text="Você: 0 | IA: 0")
+label_placar.grid(column=4, row=4)
+
+def mostrar_placar():
+    label_placar.config(text=f"Você: {PontosJOGOEU} | IA: {PontosJogoIA}")
+
 
 numeroIA = []
 jogoembaralhando = False
@@ -113,18 +126,14 @@ while jogo == "1":
             if (PontosRodadaEu > PontosRodadaIA):
                 print("Você ganhou a Rodada! ")
                 PontosJOGOEU += 1
-                print("PONTOS DO JOGO")
-                print("IA : ",PontosJogoIA)
-                print("Você: ", PontosJOGOEU)
+                mostrar_placar()
                 jogorodada = False
                 jogoembaralhando = True
                 jogo = "1"
             else : 
                 print("IA ganhou a rodada!")
                 PontosJogoIA += 1
-                print("PONTOS DO JOGO")
-                print("IA : ",PontosJogoIA)
-                print("Você: ", PontosJOGOEU)
+                mostrar_placar()
                 jogorodada = False
                 jogoembaralhando = True
                 jogo = "1"
@@ -137,10 +146,13 @@ while jogo == "1":
             maoEu.pop(jogoEU)
             print("Sua Carta ", cartaEU)
             verificarResultados(cartaEU,jogoIA)
+            mostrar_placar()
             jogoembaralhando = True
             jogorodada = False
             jogo = "1"
-            
+
+
+janela.mainloop()
 
 
 
